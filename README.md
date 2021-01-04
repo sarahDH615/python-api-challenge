@@ -4,24 +4,25 @@
 weatherpy folder:
 * weatherpy.ipynb
 * outputs folder:
-- cities.csv (a csv of 553 randomly chosen cities throughout the world)
-- .pngs of graphs of several variables vs. latitude:
-    * cloudLatAllCities.png (cloudiness v. latitude for all 553 cities)
-    * humLatAllCities.png (humidity v. latitude for all 553 cities)
-    * northern_latitude_v_cloudiness.png (cloudiness v. latitude for cities in the northern hemisphere)
-    * northern_latitude_v_max_temperature(F).png (maximum temperature (F) v. latitude in the northern hemisphere)
-    * northern_latitude_v_percent_humidity.png (percent humidity v. latitude in the northern hemisphere)
-    * northern_latitude_v_wind_speed.png (wind speed v. latitude in the northern hemisphere)
-    * southern_latitude_v_cloudiness.png (cloudiness v. latitude for cities in the southern hemisphere)
-    * southern_latitude_v_max_temperature(F).png (maximum temperature (F) v. latitude in the southern hemisphere)
-    * southern_latitude_v_percent_humidity.png (percent humidity v. latitude in the southern hemisphere)
-    * southern_latitude_v_wind_speed.png (wind speed v. latitude in the southern hemisphere)
-    * tempLatAllCities.png (maximum temperature (F) v. latitude for all 553 cities)
-    * windLatAllCities.png (wind speed v. latitude for all 553 cities)
+    - cities.csv (a csv of 553 randomly chosen cities throughout the world)
+    - .pngs of graphs of several variables vs. latitude:
+        * cloudLatAllCities.png (cloudiness v. latitude for all 553 cities)
+        * humLatAllCities.png (humidity v. latitude for all 553  cities)
+        * northern_latitude_v_cloudiness.png (cloudiness v. latitude for cities in the northern hemisphere)
+        * northern_latitude_v_max_temperature(F).png (maximum   temperature (F) v. latitude in the northern hemisphere)
+        * northern_latitude_v_percent_humidity.png (percent humidity v. latitude in the northern hemisphere)
+        * northern_latitude_v_wind_speed.png (wind speed v. latitude in the northern hemisphere)
+        * southern_latitude_v_cloudiness.png (cloudiness v. latitude for cities in the southern hemisphere)
+        * southern_latitude_v_max_temperature(F).png (maximum   temperature (F) v. latitude in the southern hemisphere)
+        * southern_latitude_v_percent_humidity.png (percent humidity v. latitude in the southern hemisphere)
+        * southern_latitude_v_wind_speed.png (wind speed v. latitude in the southern hemisphere)
+        * tempLatAllCities.png (maximum temperature (F) v. latitude for all 553 cities)
+        * windLatAllCities.png (wind speed v. latitude for all 553 cities)
+    
 vacationpy folder:
 * vacationpy.ipynb
 * images folder:
-- heatmapsymbols.png (an image of the heatmap and symbol levels on the 8 ideal temperature cities)
+    - heatmapsymbols.png (an image of the heatmap and symbol levels on the 8 ideal temperature cities)
 
 ### description:
 #### weatherpy:
@@ -31,7 +32,7 @@ The following steps were taken within the weatherpy.ipynb:
 * Generating the 500+ cities:
     * creating a range of latitude and longitude values for numpy.random to work on (so that non-existent latitudes/longitudes, such as 200 degrees longitude, don't get generated).
     * using numpy.random to create two lists of 1500 numbers each within the defined ranges, to create latitude/longitude pairs.
-        - the lists are 1500 numbers long to account for repeats and for latitude and longitude pairs that don't successfully create cities.
+        - the lists are 1500 numbers long to account for repeats and for latitude and longitude pairs that don't successfully create c  ities.
     * using citipy.nearest_city to find unique cities near the randomly created latitude/longitude pairs, and appending to a list (cities).
         - the cities list is 603 cities long, down from 1500 lat/long pairs
 * Obtaining climate data for the 500+ cities:
@@ -66,6 +67,7 @@ The vacationpy.ipynb file used the cities.csv generated in weatherpy.ipynb, and 
 The following steps were taken within the vacationpy.ipynb:
 * Importing the data
     * reading in the cities.csv
+        - reminder: the latitude/longitudes in this csv stem from open weather maps responses
     * creating a dataframe (cities_for_heatmap_df)
 * Creating a heatmap
     * checking the maximum humidity value to know what to set the maximum intensity to on the heatmap
@@ -80,17 +82,20 @@ The following steps were taken within the vacationpy.ipynb:
         - cloudiness is 0%
     * creating a new dataframe containing those cities (ideal_weather_df)
     * creating a new empty column in ideal_weather_df to hold hotel names
+* Creating a copy of ideal_weather_df using df.copy() (true_ideal_weather_df)
 * Finding hotels within 5 km of each city in ideal_weather_df
     * creating a for loop to request nearby search from google apis for each city in ideal_weather_df
         - a try/except was included for if a hotel could not be found (IndexError)
     * testing to see whether the index error occurred due to hotels being further than 5 km from the city
         - hotels were found for each of the cites within 20 km
-        - such hotels could note be considered close, so those cities will be dropped from the dataframe
-* Creating a new dataframe listing only hotels found within 5 km from the cities
-    * using ideal_weather_df.drop() to create a new dataframe hotels_df
+* Creating a dataframe for the 'ideal' weather cities using google maps place search
+    * calling google maps place search using place names in true_ideal_weather_df to find city coordinates
+    * replacing the lat, lng columns in true_ideal_weather_df with those new coordinates
+* Finding hotels within 5 km of each city in true_ideal_weather_df
+    * creating a for loop to request nearby search from google apis for each city in true_ideal_weather_df
 * Creating a symbol layer on top of a heatmap
-    * using iterrows to create an info box for each hotel in hotels_df
-    * recreating the heatmap showing the humidities of all cities in cities_for_heatmap_df
+    * using iterrows to create an info box for each hotel in true_ideal_weather_df
+    * recreating the heatmap weighted by humidities of all cities in cities_for_heatmap_df
     * using gmaps.marker_layer to apply the info boxes on top of the heatmap
 
 After completing vacationpy.ipynb, a screenshot was taken of the final heatmap/symbol layer and saved to the images folder
@@ -104,7 +109,7 @@ Weatherpy also shows the limits of linear regression, in that it can only show t
 
 Additionally, to make claims about correlations between different variables, more than one day of measurement should be taken. The day of measurement, 24 December 2020, could have been a day of extreme variables that are not representative, as well as only representing one season per hemisphere. While the one strong linear regression correlation found between temperature and latitude appears commonsense, it cannot be asserted without further repetition of the data set. 
 
-In vacationpy, one city, Tiznit (Morocco), had to be dropped from the hotels_df because no hotels could be found within 5 km of it. However, if one looks up Tiznit on google maps using its name, several hotels return as being within 5 km. The issue appears to be the coordinates that open weather maps assigns to the city name 'Tiznit'. If those coordinates are entered into google maps, it returns an unpopulated area within Tiznit province, but not within the city of Tiznit itself. While the geographic coordinates returned by open weather maps may be a useful spot for determining weather, it is not an ideal spot to assign to the city of Tiznit. 
+In vacationpy, one city, Tiznit (Morocco), did not initially turn up data until the search radius was widened to 20 km. However, if one looks up Tiznit on google maps using its name, several hotels return as being within 5 km (Google, 2021a). The issue appears to be the coordinates that open weather maps assigns to the city name 'Tiznit'. If the open weather maps coordinates for Tiznit are entered into google maps, it returns an unpopulated area within Tiznit province, but not within the city of Tiznit itself (Google, 2021b). While the geographic coordinates returned by open weather maps may be a useful spot for determining weather, it is not an ideal spot to assign to the city of Tiznit. 
 
 This highlights the issue of using apis for purposes different from their stated ones: open weather maps is not primarily meant for locating cities, but is instead for determining weather, so it may be permissible to use a looser definition of a place's coordinates if it provides clearer weather data. Perhaps pulling weather data from within the city of Tiznit itself caused too much interference, or perhaps a pre-existing ground weather station already existed outside of Tiznit, so that was what was used. While this approximation of Tiznit was fine for the weatherpy portion of this project, the vacationpy section requires more precise coordinates for each city, in order to accurately return hotels within the required distance. 
 
@@ -112,4 +117,8 @@ In order to remove this imprecision, google maps place search should be called f
 
 **References**
 
-Center for International Earth Science Information Network - CIESIN - Columbia University (2018). _Gridded Population of the World, Version 4(GPWv4): Population Density, Revision 11._ Palisades, NY: NASA Socioeconomic Data and Applications Center (SEDAC). https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11/maps. Accessed 3 January 2021.
+Center for International Earth Science Information Network - CIESIN - Columbia University (2018). _Gridded Population of the World, Version 4(GPWv4): Population Density, Revision 11._ Palisades, NY: NASA Socioeconomic Data and Applications Center (SEDAC). Retrieved January 3, 2021 from https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11/maps. 
+
+Google. (2021a). [Google Map of Tiznit, Morocco]. Retrieved January 3, 2021 from https://www.google.com/maps/place/Tiznit+85000,+Morocco/@29.7010448,-9.7654605,11623m/data=!3m2!1e3!4b1!4m5!3m4!1s0xdb479f80a0432e5:0x4de7b30202dab839!8m2!3d29.693392!4d-9.732157
+
+Google. (2021b). [Google Map of coordinates 29.58, -9.5]. Retrieved January 3, 2021 from <https://www.google.com/maps/place/29°34'48.0"N+9°30'00.0"W/@29.58,-9.5019969,727m/data=!3m2!1e3!4b1!4m5!3m4!1s0x0:0x0!8m2!3d29.58!4d-9.5>
