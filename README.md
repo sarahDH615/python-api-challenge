@@ -32,7 +32,7 @@ The following steps were taken within the weatherpy.ipynb:
 * Generating the 500+ cities:
     * creating a range of latitude and longitude values for numpy.random to work on (so that non-existent latitudes/longitudes, such as 200 degrees longitude, don't get generated).
     * using numpy.random to create two lists of 1500 numbers each within the defined ranges, to create latitude/longitude pairs.
-        - the lists are 1500 numbers long to account for repeats and for latitude and longitude pairs that don't successfully create c  ities.
+        - the lists are 1500 numbers long to account for repeats and for latitude and longitude pairs that don't successfully create cities.
     * using citipy.nearest_city to find unique cities near the randomly created latitude/longitude pairs, and appending to a list (cities).
         - the cities list is 603 cities long, down from 1500 lat/long pairs
 * Obtaining climate data for the 500+ cities:
@@ -62,7 +62,7 @@ The following steps were taken within the weatherpy.ipynb:
         * wind speed v. latitude
         - after each pair of graphs, observations are made as to what the graphs may suggest
 #### vacationpy:
-The vacationpy.ipynb file used the cities.csv generated in weatherpy.ipynb, and gmaps, to draw a heatmap of the humidity of the 553 randomly generated cities. The csv and gmaps were further used to discover cities fitting certain criteria making them fit for a holiday. Using the nearby search request from google apis, hotels near those cities were found, and a symbol layer was added to the heatmap listing information about those hotels. The images folder contains a screenshot of the final heatmap with a symbol layer of the locations of those hotels.
+The vacationpy.ipynb file used the cities.csv generated in weatherpy.ipynb, and gmaps, to draw a heatmap of the humidity of the 553 randomly generated cities. The csv and gmaps were further used to discover cities fitting certain criteria making them fit for a holiday. Using the google apis nearby search, hotels near those cities were found. The coordinates of the cities with ideal weather were found more accurately using google apis place search, and hotels near those coordinates were found using nearby search. Using those hotels, a symbol layer was added to the heatmap listing information about those hotels. The images folder contains a screenshot of the final heatmap with a symbol layer of the locations of those hotels.
 
 The following steps were taken within the vacationpy.ipynb:
 * Importing the data
@@ -98,7 +98,7 @@ The following steps were taken within the vacationpy.ipynb:
     * recreating the heatmap weighted by humidities of all cities in cities_for_heatmap_df
     * using gmaps.marker_layer to apply the info boxes on top of the heatmap
 
-After completing vacationpy.ipynb, a screenshot was taken of the final heatmap/symbol layer and saved to the images folder
+After completing vacationpy.ipynb, a screenshot was taken of the final heatmap/symbol layer and saved to the images folder.
 
 
 
