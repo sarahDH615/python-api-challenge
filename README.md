@@ -124,8 +124,8 @@ Additionally, to make claims about correlations between different variables, mor
 In vacationpy, one city, Tiznit (Morocco), did not initially turn up data until the search radius was widened to 20 km. However, if one looks up Tiznit on google maps using its name, several hotels return as being within 5 km (Google, 2021a). The issue appears to be the coordinates that open weather maps assigns to the city name 'Tiznit'. If the open weather maps coordinates for Tiznit are entered into google maps, it returns an unpopulated area within Tiznit province, but not within the city of Tiznit itself (Google, 2021b). While the geographic coordinates returned by open weather maps may be a useful spot for determining weather, it is not an ideal spot to assign to the city of Tiznit. 
 
 <p align="center">
-  <img width="350" height='300' alt='Map with Magnifying Glass and Location Point' src="images/mapPoint.png">
-  <img width="350" height='300' alt='Map with Magnifying Glass and Location Point' src="images/mapPoint.png">
+  <img width="350" height='300' alt='Tiznit Using Name' src="images/tiznitName.png">
+  <img width="350" height='300' alt='Tiznit Using Coordinates' src="images/tiznitCoord.png">
 </p>
 *Comparison of Tiznit, searched by name; and Tiznit, searched by OWM-assigned coordinates.*
 
