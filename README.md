@@ -1,7 +1,14 @@
 # python-api-challenge
 
+<p align="center">
+  <img width="850" alt='Map with Magnifying Glass and Location Point' src="images/mapPoint">
+</p>
+
 ### contains:
 weatherpy folder:
+
+![Weatherpy sample output](/images/tempLatAllCitiesTight.png)
+
 * weatherpy.ipynb
 * outputs folder:
     - cities.csv (a csv of 553 randomly chosen cities throughout the world)
@@ -20,6 +27,9 @@ weatherpy folder:
         * windLatAllCities.png (wind speed v. latitude for all 553 cities)
     
 vacationpy folder:
+
+![Vacationpy output](/vacationpy/images/heatmapsymbols.png)
+
 * vacationpy.ipynb
 * images folder:
     - heatmapsymbols.png (an image of the heatmap and symbol levels on the 8 ideal temperature cities)
