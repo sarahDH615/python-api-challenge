@@ -127,9 +127,9 @@ In vacationpy, one city, Tiznit (Morocco), did not initially turn up data until 
   <img width="350" height='300' alt='Tiznit Using Name' src="images/tiznitName.png">
   <img width="350" height='300' alt='Tiznit Using Coordinates' src="images/tiznitCoord.png">
 </p>
+<p>
 <em>Comparison of Tiznit, searched by name; and Tiznit, searched by OWM-assigned coordinates.</em>
-
-<br/>
+</p>
 
 This highlights the issue of using apis for purposes different from their stated ones: open weather maps is not primarily meant for locating cities, but is instead for determining weather, so it may be permissible to use a looser definition of a place's coordinates if it provides clearer weather data. Perhaps pulling weather data from within the city of Tiznit itself caused too much interference, or perhaps a pre-existing ground weather station already existed outside of Tiznit, so that was what was used. While this approximation of Tiznit was fine for the weatherpy portion of this project, the vacationpy section requires more precise coordinates for each city, in order to accurately return hotels within the required distance. 
 
