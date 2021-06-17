@@ -1,7 +1,7 @@
 # python-api-challenge
 
 <p align="center">
-  <img width="850" alt='Map with Magnifying Glass and Location Point' src="images/mapPoint.png">
+  <img width="80%" alt='Map with Magnifying Glass and Location Point' src="images/mapPoint.png">
 </p>
 
 ### contains:
@@ -122,6 +122,12 @@ Weatherpy also shows the limits of linear regression, in that it can only show t
 Additionally, to make claims about correlations between different variables, more than one day of measurement should be taken. The day of measurement, 24 December 2020, could have been a day of extreme variables that are not representative, as well as only representing one season per hemisphere. While the one strong linear regression correlation found between temperature and latitude appears commonsense, it cannot be asserted without further repetition of the data set. 
 
 In vacationpy, one city, Tiznit (Morocco), did not initially turn up data until the search radius was widened to 20 km. However, if one looks up Tiznit on google maps using its name, several hotels return as being within 5 km (Google, 2021a). The issue appears to be the coordinates that open weather maps assigns to the city name 'Tiznit'. If the open weather maps coordinates for Tiznit are entered into google maps, it returns an unpopulated area within Tiznit province, but not within the city of Tiznit itself (Google, 2021b). While the geographic coordinates returned by open weather maps may be a useful spot for determining weather, it is not an ideal spot to assign to the city of Tiznit. 
+
+<p align="center">
+  <img width="350" height='300' alt='Map with Magnifying Glass and Location Point' src="images/mapPoint.png">
+  <img width="350" height='300' alt='Map with Magnifying Glass and Location Point' src="images/mapPoint.png">
+</p>
+*Comparison of Tiznit, searched by name; and Tiznit, searched by OWM-assigned coordinates.*
 
 This highlights the issue of using apis for purposes different from their stated ones: open weather maps is not primarily meant for locating cities, but is instead for determining weather, so it may be permissible to use a looser definition of a place's coordinates if it provides clearer weather data. Perhaps pulling weather data from within the city of Tiznit itself caused too much interference, or perhaps a pre-existing ground weather station already existed outside of Tiznit, so that was what was used. While this approximation of Tiznit was fine for the weatherpy portion of this project, the vacationpy section requires more precise coordinates for each city, in order to accurately return hotels within the required distance. 
 
